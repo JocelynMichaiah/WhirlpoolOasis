@@ -21,7 +21,7 @@ const About = () => {
       </p>
       <h3>Important Info</h3>
       <p className="indent">
-        The contract address is 0xD8ad26dD18089A1e29FdEc307Fd4dB8E1b67C769. You can check out the contract on here: https://github.com/JocelynMichaiah/WhirlpoolOasis. We encourage verifying the contract (via bytecode).
+        The contract address is 0xA27317526967237642F562D4f6dd8Af92C5a5B43. You can check out the contract on here: https://github.com/JocelynMichaiah/WhirlpoolOasis. We encourage verifying the contract (via bytecode).
       </p>
       <p className="indent">
         Do not withdraw your funds to your new address by calling the function from your old address. This will break all anonymity. Use a
@@ -53,8 +53,9 @@ const About = () => {
         a transaction on the blockchain, the info of from, to, and how much is stored on the explorer
         and visible for everyone to see. This means that anyone can tell if you interacted with 'x' contract
         or recieved 'y' funds from someone. By using this service, you can obfuscate this info by transfering
-        all your funds to the contract tied to a new address. Wait for other users to interact with the contract (preferably 1-2 weeks),
-        then withdraw to your new address, with no connection between your new address and old one.
+        all your funds to the contract, and confidentially telling the contract the new address you want the funds to belong too.
+        Wait for other users to interact with the contract (preferably 1-2 weeks),
+        then withdraw to your new address, with no clear connection between your new address and old one.
       </p>
       <p className="indent">
         This is possible by using structured deposits and withdrawals. A very simple example is if you have 3

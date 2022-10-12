@@ -14,13 +14,15 @@ export const useDepositTokens = (address: string, amount: number) => {
     const ContractInterface = new utils.Interface(abi)
     const contract = new Contract(contractAddress, ContractInterface)
 
+    //if no metamask detected give null
+    const Sapphiresigner = window.ethereum ? new ethers.providers.Web3Provider(sapphire.wrap(window.ethereum)).getSigner() : null as any
+
     //function called from the Deposit button when clicked.
     const approveAndDeposit = () => {
-        return depositSend(address, { value: ethers.utils.parseEther(String(amount)) })
+        return Sapphiresigner ? depositSend(address, { value: ethers.utils.parseEther(String(amount)) }) : console.log("No metamask detected")
     }
 
-    const Sapphiresigner = new ethers.providers.Web3Provider(sapphire.wrap(window.ethereum)).getSigner()
-    //function to call the deposit function from the contract.
+    //function to call the deposit function from the contract. If null signer, do nothing instead
     const { send: depositSend, state: depositState } =
         useContractFunction(contract, "deposit", {
             transactionName: "deposit",

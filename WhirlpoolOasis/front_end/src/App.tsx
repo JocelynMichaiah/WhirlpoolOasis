@@ -17,11 +17,11 @@ import About from "./core/About";
 const config = {
   readOnlyChainId: Sapphire.chainId,
   readOnlyUrls: {
-    [Localhost.chainId]: "http://127.0.0.1:8545",
+    [Localhost.chainId]: "https://127.0.0.1:8545",
     [Sapphire.chainId]: "https://testnet.sapphire.oasis.dev",
   },
   multicallAddresses: {
-    Sapphire: "0xF02Ef0Ffc2dE82E5Ee3184Ba9F1e2e5f95eDC399", // from deployMulticall.ts
+    Sapphire: "0x51Cac80DE446358D2452A5D8f8409f8583288673", // from deployMulticall.ts
   },
   notifications: {
     expirationPeriod: 1000,

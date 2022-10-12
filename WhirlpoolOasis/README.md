@@ -1,4 +1,4 @@
- Welcome to the github repository for www.whirlpoolcash.com!
+ Welcome to the github repository for www.whirlpooloasis.com!
  The contracts are located at /contracts
  The front end website is located at /front_end
 

@@ -1,6 +1,6 @@
 //We update constants.js manually from the artifacts folder hardhat generates whenever we launch the contract
 
-export const contractAddress = "0xD8ad26dD18089A1e29FdEc307Fd4dB8E1b67C769"
+export const contractAddress = "0xA27317526967237642F562D4f6dd8Af92C5a5B43"
 export const abi = [
     {
         "inputs": [
