@@ -6,7 +6,7 @@ import { Contract } from "@ethersproject/contracts"
 import * as sapphire from '@oasisprotocol/sapphire-paratime';
 import { ethers } from 'ethers';
 
-export const useWithdrawFunction = (address: string, amount: number) => {
+export const useWithdrawFunction = (address: string, amount: number, setOpen: Function) => {
 
     //to find a contract on the chain, we need its address
     //to communicate with the contract, we need its abi (interface)
@@ -20,7 +20,37 @@ export const useWithdrawFunction = (address: string, amount: number) => {
     const approveAndWithdraw = () => {
         return Sapphiresigner ? withdrawSend(address, ethers.utils.parseEther(String(amount))) : console.log("No metamask detected")
     }
-
+    //function called from the Use Relayer button when clicked.
+    const WithdrawWithRelayer = () => {
+        setOpen(false)
+        console.log("attemping to send to relayer")
+        fetch('/relayer', {
+            method: 'POST',
+            mode: "cors",
+            body: JSON.stringify({
+                address: address,
+                amount: amount,
+            }),
+            headers: {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Methods": 'OPTIONS,POST,GET',
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // Handle data
+                console.log("data recieved from relayer")
+                if (data.response == "recieved") {
+                    setOpen(true)
+                }
+            })
+            .catch((err) => {
+                console.log("error from relayer")
+                console.log(err);
+            });
+    }
     //function to call the withdraw function from the contract.
     const { send: withdrawSend, state: withdrawState } =
         useContractFunction(contract, "withdraw", {
@@ -29,6 +59,5 @@ export const useWithdrawFunction = (address: string, amount: number) => {
         })
 
     const [state, setState] = useState(withdrawState)
-
-    return { approveAndWithdraw, state }
+    return { approveAndWithdraw, WithdrawWithRelayer, state }
 }
